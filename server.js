@@ -1,12 +1,21 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
+const path = require("path");
 
-app.get('/', (req, res) => {
-  res.send('Hello from the server!');
+const distDir = path.join(__dirname, "/frontend/dist/frontend");
+
+app.use(express.static(distDir));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(distDir, "index.html"));
 });
 
-app.get('/health', (req, res) => {
+/* app.get("/", (req, res) => {
+  res.send("Hello from the server!");
+}); */
+
+app.get("/health", (req, res) => {
   res.sendStatus(200);
 });
 
