@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const path = require("path");
 
-const distDir = path.join(__dirname, "/frontend/dist/frontend");
+const distDir = path.join(__dirname, "/frontend/dist/frontend/");
 
 app.use(express.static(distDir));
 
@@ -15,7 +15,7 @@ app.get("/test", (req, res) => {
   res.send("Hello from the server!");
 });
 
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(distDir, "index.html"));
 });
 
