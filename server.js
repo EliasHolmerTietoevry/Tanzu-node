@@ -5,6 +5,8 @@ const path = require("path");
 
 const distDir = path.join(__dirname, "/frontend/dist/frontend/");
 
+console.log({ dirname: __dirname }, { distDir: distDir });
+
 app.use(express.static(distDir));
 
 app.get("/health", (req, res) => {
@@ -15,7 +17,7 @@ app.get("/test", (req, res) => {
   res.send("Hello from the server!");
 });
 
-app.get("*", (req, res) => {
+app.get("/app", (req, res) => {
   res.sendFile(path.join(distDir, "index.html"));
 });
 
