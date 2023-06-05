@@ -18,6 +18,8 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/app", (req, res) => {
+  console.log(window.location.pathname);
+  console.log("Serving file at: ", path.join(distDir, "index.html"));
   res.sendFile(path.join(distDir, "index.html"));
 });
 
